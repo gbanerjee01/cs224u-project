@@ -1,0 +1,26 @@
+{
+    "os": "Linux-4.14.232-176.381.amzn2.x86_64-x86_64-with-glibc2.10",
+    "python": "3.7.10",
+    "heartbeatAt": "2021-05-30T08:31:28.904330",
+    "startedAt": "2021-05-30T08:31:24.532193",
+    "docker": null,
+    "gpu": "Tesla T4",
+    "gpu_count": 1,
+    "cpu_count": 4,
+    "cuda": "10.0.130",
+    "args": [
+        "-f",
+        "/home/ec2-user/.local/share/jupyter/runtime/kernel-68b766d1-97b3-4d47-ac23-567b7fc40ad2.json"
+    ],
+    "state": "running",
+    "program": "cs224u-project/s2s/Seq2Seq.ipynb",
+    "root": "/data/cs224u-project",
+    "git": {
+        "remote": "https://github.com/gbanerjee01/cs224u-project.git",
+        "commit": "b9a7148eabc7988a1a6aa9893805398a2291b5ac"
+    },
+    "email": null,
+    "host": "ip-172-31-41-116.us-east-2.compute.internal",
+    "username": "ec2-user",
+    "executable": "/home/ec2-user/anaconda3/envs/pytorch_latest_p37/bin/python"
+}

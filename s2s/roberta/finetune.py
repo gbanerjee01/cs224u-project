@@ -29,8 +29,12 @@ def get_wer(labels, preds):
     )
 
 def main():
+    logging.basicConfig(level=logging.INFO)
+    transformers_logger = logging.getLogger("transformers")
+    transformers_logger.setLevel(logging.WARNING)
+
     model_args = Seq2SeqArgs()
-    model_args.num_train_epochs = 6
+    model_args.num_train_epochs = 10
     # model_args.no_save = True
     model_args.evaluate_generated_text = True
     model_args.evaluate_during_training = True
@@ -49,22 +53,12 @@ def main():
     config_decoder.add_cross_attention = True
     # model_args = {} #{"use_multiprocessed_decoding": True}
     config = EncoderDecoderConfig.from_encoder_decoder_configs(config_encoder, config_decoder)
-    # encoder_decoder_name = "roberta"
-    # model = EncoderDecoderModel(config=config)
-    model = Seq2SeqModel(
-        encoder_type="roberta",
-        encoder_name="roberta-base",
-        decoder_name="roberta-base",
-        args=model_args,
-        config=config,
-        use_cuda=True,
-    )
-#     model = Seq2SeqModel(encoder_decoder_type="roberta", encoder_decoder_name="./outputs/best_model", args=model_args, config=config, use_cuda=True)
+    model = Seq2SeqModel(encoder_type="roberta", encoder_name="./outputs/checkpoint-9702-epoch-6/encoder", decoder_name="./outputs/checkpoint-9702-epoch-6/decoder", args=model_args, config=config, use_cuda=True)
     
     train_df = pd.read_pickle("train.pkl")
     train_df = train_df.dropna()
     dev_df = pd.read_pickle("dev.pkl")
-
+    
     # Train the model
     wandb.init(project='cs224u', entity='gbanerje')
 
@@ -75,14 +69,13 @@ def main():
     # Model training here
 
     model.train_model(
-        train_df, eval_data=dev_df, matches=count_matches, show_running_loss=True, args={'fp16': False}
+        train_df, eval_data=dev_df, matches=count_matches, wer=get_wer, show_running_loss=True, args={'fp16': False}
     )
 
     wandb.join()
 
     # # Evaluate the model
     results = model.eval_model(dev_df)
-    
     
 if __name__=="__main__":
     main()

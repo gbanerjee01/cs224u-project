@@ -1,0 +1,24 @@
+{
+    "os": "Linux-4.14.232-176.381.amzn2.x86_64-x86_64-with-glibc2.9",
+    "python": "3.6.13",
+    "heartbeatAt": "2021-05-30T12:48:28.378466",
+    "startedAt": "2021-05-30T12:48:25.663931",
+    "docker": null,
+    "gpu": "Tesla T4",
+    "gpu_count": 1,
+    "cpu_count": 4,
+    "cuda": "10.0.130",
+    "args": [],
+    "state": "running",
+    "program": "finetune.py",
+    "codePath": "s2s/finetune.py",
+    "git": {
+        "remote": "https://github.com/gbanerjee01/cs224u-project.git",
+        "commit": "6c1537a981904a20e9c032cee6960edd05b1a6cc"
+    },
+    "email": "gaurab.banerjee97@gmail.com",
+    "root": "/data/cs224u-project",
+    "host": "ip-172-31-45-115.us-east-2.compute.internal",
+    "username": "ec2-user",
+    "executable": "/home/ec2-user/anaconda3/envs/pytorch_p36/bin/python3"
+}
